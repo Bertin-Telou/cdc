@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>CDC-plateforme</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- styles -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700" rel="stylesheet">
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+  <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="assets/css/docs.css" rel="stylesheet">
+  <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/color/default.css" rel="stylesheet">
+
+  <!-- fav and touch icons -->
+  <link rel="shortcut icon" style="width: 20px; height: 20px; border-radius: 50%;" href="assets/images/logo CDC.jpeg">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+  <!-- =======================================================
+    Theme Name: Serenity
+    Theme URL: https://bootstrapmade.com/serenity-bootstrap-corporate-template/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+  <style>
+    body {
+      background: #f7fafc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .py-5 {
+      margin-top: 80px;
+    }
+    .member-card {
+      background: linear-gradient(270deg, #ffffff, #e0f7e9, #d0e8f2, #ffffff);
+      background-size: 800% 800%;
+      animation: gradientShift 15s ease infinite;
+      padding: 20px;
+      border-radius: 15px;
+      position: relative;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      cursor: pointer;
+      perspective: 1000px;
+      outline: none;
+      margin: 10px auto;
+      max-width: 320px;
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .member-card:hover {
+      transform: rotateX(8deg) rotateY(8deg) scale(1.05);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+    }
+
+    .member-card:focus {
+      outline: 3px solid #2ecc71;
+    }
+
+    /* Coins décoratifs scintillants + rotation */
+    @keyframes glowRotate {
+      0% {
+        box-shadow: 0 0 5px green, 0 0 10px blue;
+        transform: rotate(0deg);
+      }
+
+      50% {
+        box-shadow: 0 0 15px green, 0 0 25px blue;
+        transform: rotate(3deg);
+      }
+
+      100% {
+        box-shadow: 0 0 5px green, 0 0 10px blue;
+        transform: rotate(-3deg);
+      }
+    }
+
+    .member-card::before,
+    .member-card::after {
+      content: "";
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border: 6px solid;
+      animation: glowRotate 3s infinite alternate ease-in-out;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .member-card::before {
+      border-color: green transparent transparent blue;
+      top: 0;
+      left: 0;
+      transform-origin: top left;
+    }
+
+    .member-card::after {
+      border-color: transparent blue green transparent;
+      bottom: 0;
+      right: 0;
+      transform-origin: bottom right;
+    }
+
+    /* Logo et photo */
+    .logos {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .profile-img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 3px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.4s ease;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .member-card:hover .profile-img {
+      transform: scale(1.1);
+    }
+
+    /* Titre */
+    .title {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #2c3e50;
+      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+
+    /* Informations */
+    .info {
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(8px);
+      padding: 6px 10px;
+      border-radius: 8px;
+      margin: 5px 0;
+      font-size: 0.95rem;
+      text-align: left;
+      color: #1a1a1a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .info i {
+      color: #2c3e50;
+      min-width: 20px;
+      text-align: center;
+    }
+    .fa-solid {
+      color: black;
+    }
+
+    /* Nom et email en vert */
+    .name {
+      color: green;
+      font-weight: bold;
+    }
+
+    .email {
+      color: green;
+    }
+
+    /* Texte bas */
+    .footer-text {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #2c3e50;
+      text-align: center;
+    }
+
+    /* Pulse animation au clic */
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.08);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .member-card.pulse {
+      animation: pulse 0.5s ease;
+    }
+
+    /* Responsive : 1, 2, 4 cartes */
+    .cards-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    @media (max-width: 575.98px) {
+      .member-card {
+        max-width: 90vw;
+      }
+    }
+
+    @media (min-width: 576px) and (max-width: 991.98px) {
+      .member-card {
+        max-width: 45vw;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .member-card {
+        max-width: 23vw;
+      }
+    }
+    span{
+      color: #2ecc71;
+    }
+  </style>
+</head>
+
+<body data-spy="scroll" data-target=".bs-docs-sidebar">
+  <header>
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <!-- logo -->
+          <a class="brand logo" href="index.html"><img src="assets/images/logo CDC.jpeg" style="width: 50px; height: 50px; border-radius: 50%;" alt=""></a>
+          <!-- end logo -->
+          <!-- top menu -->
+          <div class="navigation">
+            <nav>
+              <ul class="nav topnav">
+                <li class="dropdown ">
+                  <a href="index.html">Acceuil</a>
+                </li>
+                <li class="dropdown ">
+                  <a href="#">Nos Activités</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="overview.html">Réboisement</a></li>
+                    <li><a href="scaffolding.html">Assistance social</a></li>
+                    <li><a href="base-css.html">Entrepreneuriat</a></li>
+                    <li><a href="components.html">Culture & Traditions</a></li>
+                    <li><a href="javascript.html">Diaspora</a></li>
+                    <li><a href="icons.html">Conglomera</a></li>
+                    <li class="dropdown"><a href="#">Developpement Personnel</a>
+                      <ul class="dropdown-menu sub-menu">
+                        <li><a href="#">Formations</a></li>
+                        <li><a href="#">Coaching & Séminaires</a></li>
+                        <li><a href="#">Jeunesse & Leadership</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#">Nos Services</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="about.html">Micro-finance CDC</a></li>
+                    <li><a href="pricingtable.html">CDC Medical Services</a></li>
+                    <li><a href="fullwidth.html">Auto-Ecole CDC</a></li>
+                    <li><a href="fullwidth.html">Campagne-Agricole CDC</a></li>
+                    <li><a href="fullwidth.html">Coaching CDC</a></li>
+                    <li><a href="fullwidth.html">Blockchain</a></li>
+                    <li><a href="404.html">404</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#">Partenaires</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="portfolio-2cols.html">Nos partenaires</a></li>
+                    <li><a href="portfolio-3cols.html">Devenir partenaire</a></li>
+                    <li><a href="portfolio-4cols.html">Collaborateur</a></li>
+                    <li><a href="portfolio-detail.html">Témoignages</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#">Blog</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="blog_left_sidebar.html">Actualités</a></li>
+                    <li><a href="blog_right_sidebar.html">Réflexions citoyennes</a></li>
+                    <li><a href="post_left_sidebar.html">Événements CDC</a></li>
+                    <li><a href="post_right_sidebar.html">Coaching</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown active">
+                    <a href="#">À propos</a>
+                    <ul class="dropdown-menu">
+                      <li><a href="histoire.html">Notre Histoire</a></li>
+                      <li><a href="scaffolding.html">Membres</a></li>
+                      <li><a href="about.html">CDC-plateforme</a></li>
+                      <li><a href="rapport-activites.html">Rapport d'activités</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#">Adhésion</a>
+                    <ul class="dropdown-menu">
+                      <li><a href="comment-adhérer.html">Comment adhérer ?</a></li>
+                      <li><a href="formulaire-adhesion.html">Formulaire en ligne</a></li>
+                      <li><a href="espace-membre.html">Espace membre</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#">Faire un don</a>
+                    <ul class="dropdown-menu">
+                      <li><a href="faire-un-don.html">Soutenir CDC</a></li>
+                      <li><a href="transparence.html">Utilisation des fonds</a></li>
+                    </ul>
+                  </li>
+                <li>
+                  <a href="contact.html">Contact</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <!-- end menu -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <body>
+  <div class="container py-5">
+    <div class="cards-row">
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/blaise.jpeg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Président Fondateur CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prenom: <span>GNODJA Madank</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2018</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Chef Service</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/gada.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Conseiller CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom: <span>GADA Koffi</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Ann&e d'Adhésion: <span>2022</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Comptable Mécanographe/Caissier</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/sonia.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Presidente CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i> Nom & Prénom: <span>BALEMA S. Sonia</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2021</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i> Proffession: <span>Chargé de Fret/DTRF</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/roger.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Vice Président CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom : <span>GNODJA T. Roger</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2018</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Ingenieur biologiste</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i> Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/moukan.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Secrétaire Général CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prenom: <span>GNODJA Moukandjo</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2018</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>conseiller Technique en gestion <br> des entreprises Agricole</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/bertin.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Sécrétaire Général Adjoint/CC CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i> Nom & Prénom: <span>TELOU B. Mawaki</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2020</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i> Proffession: <span>Entrepreuneur Autodidacte</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/emilee.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Trésorier Général CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom : <span>DJAKODO Oulame</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2018</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Secrétaire-Caissier <br> chargé de la clientèle</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i> Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/dasilva.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Trésoriere Générale Adjointe CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom: <span>Da Silva Afi Noellie</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Ann&e d'Adhésion: <span>2018</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Commerçante</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/djobouel.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membres CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prenom: <span>DJOBOUEL Koami</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2019</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Enseignant Stagiaire</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/nafam.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membres CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i> Nom & Prénom: <span>NANFAM Yadjado</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2018</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i> Proffession: <span>Biologiste/physiologiste</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/mabigba.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Vice Président CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom : <span>GNODJA Mabingba</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2019</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Instituteur</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i> Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/boyok.jpeg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom: <span>BOYOK Ougroudja</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Ann&e d'Adhésion: <span>2022</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Etudiant</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/tamak.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prenom: <span>TAMAK M'boryé</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2021</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Agent de controle des <br>charges de clinker/DTRF</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/bigui.jpeg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i> Nom & Prénom: <span>BIGUI Bitabimi</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2018</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i> Proffession: <span>Stagiaire</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/badja.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom : <span>BADJA B. Emmaculée</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2022</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Commerçante</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i> Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/nteki.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom: <span>N'KOR N'téki</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Ann&e d'Adhésion: <span>2019</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Instituteur</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/djakodo.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prenom: <span>DJAKODO Aborlagni</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2018</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Conseillère technique <br>en gestion des entréprises</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/madeleine.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i> Nom & Prénom: <span>DINABERE N'flignin</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2018</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i> Proffession: <span>Commerçante</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/kpta.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom : <span>GNEKELE Kpatcha</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2021</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Agent de énévolat à la DTRF</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i> Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/awoudi.jpeg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom: <span>AWOUDI Koffivi Fiagnon</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Ann&e d'Adhésion: <span>2021</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Electricien plombier</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/nabi.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prenom: <span>NABI Julien A. Razak</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2020</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Déclarant en Douane</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/bilapoa.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i> Nom & Prénom: <span>GNODJA Bilapoa</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2021</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i> Proffession: <span>Moniteur Auto</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/lidoumbi.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom : <span>KOUSSANDJA Lidoumbi</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2019</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Instituteur</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i> Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/gbegbele.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom: <span>GBEGBELE N'guégha</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Ann&e d'Adhésion: <span>2020</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Déclarant en Douane</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/dali.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prenom: <span>OUDJAKPA N'dali</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2018</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Instituteur</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/tchadjobo.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i> Nom & Prénom: <span>TCHADJOBO Samoussoudini</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2021</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i> Proffession: <span>Déclarant en Douane</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/anik.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom : <span>BODJONA B. Annick</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2021</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Chargé de communication</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i> Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/amadoto.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom: <span>AMADOTOR Komla <br> Nuwoza Isidore</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Ann&e d'Adhésion: <span>2022</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Chef section statistique au MCMC</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/edem.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Memebre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prenom: <span>BAVON Folly Edem</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2022</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Infographe expert en imagerie</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/mborgni.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i> Nom & Prénom: <span>GNODJA M'borgni</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2020</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i> Proffession: <span>Electricien-Plombier</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/dambe.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom : <span>KANGBENI Dambé</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2022</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Expert fonctionnel <br> CEO de Liyokgreen</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i> Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/aziaty.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom: <span>AZIATY Kokou A. Paul</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Ann&e d'Adhésion: <span>2022</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Gestionnaire comptable <br> responsable adm & comptable </span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/kamekpo.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prenom: <span>KAMEKPO AMELE</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2022</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Commerçante</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/sena.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i> Nom & Prénom: <span>AGBANYO Akossiwa Sena</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2022</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i> Proffession: <span>Restauratrice</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/akoto.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom : <span>AKOTO Ayaovi</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Année d'Adhésion: <span>2022</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Gestionnaire et coach sportif</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i> Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/bawoe.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom: <span>BAWOE DANA</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Ann&e d'Adhésion: <span>2019</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Agent de controle DTRF</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/aliou.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom: <span>ALIYOU Ahmadou</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Ann&e d'Adhésion: <span>2018</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Entrepreuneur Agricole</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+      <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/amele.jpg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom: <span>ADOTEY Roseline <br> Amele adjele</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Ann&e d'Adhésion: <span>2020</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Conseillère en assurance vie</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+            <div class="member-card" tabindex="0">
+        <img src="assets/images/logo CDC.jpeg" alt="Logo CDC" class="logos" />
+        <img src="assets/membres/bagna.jpeg" alt="Photo de profil" class="profile-img" />
+        <h4 class="title">Membre CDC</h4>
+
+        <div class="info name"><i class="fa-solid fa-user"></i>Nom & Prénom: <span>BAGNAN Nébé Yvette</span></div>
+        <div class="info"><i class="fa-solid fa-calendar-check"></i>Ann&e d'Adhésion: <span>2025</span></div>
+        <div class="info"><i class="fa-solid fa-briefcase"></i>Proffession: <span>Assistante Administrative <br> & comptable</span></div>
+        <div class="info"><i class="fa-solid fa-calendar"></i>Année: <span>2025</span></div>
+
+        <div class="footer-text">CDC pour tous, ensemble pour tous gagner</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Animation pulse au clic
+    document.querySelectorAll(".member-card").forEach((card) => {
+      card.addEventListener("click", () => {
+        card.classList.add("pulse");
+        setTimeout(() => card.classList.remove("pulse"), 500);
+      });
+    });
+  </script>
+</body>
+
+
+
+  <!-- Footer
+ ================================================== -->
+   <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="span4">
+          <div class="widget">
+            <h5>Services</h5>
+            <ul class="regular">
+              <li><a href="#">Nos Activités</a></li>
+              <li><a href="#">Nos Services</a></li>
+              <li><a href="#">Nos Partenaires</a></li>
+              <li><a href="#">Notre Equipe</a></li>
+              <li><a href="#">Notre Bilan</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="span4">
+          <div class="widget">
+            <h5>Mission</h5>
+            <ul class="regular">
+              <li><a href="#">Notre Mission</a></li>
+              <li><a href="#">Nos Objectifs</a></li>
+              <li><a href="#">Nos Réalisations</a></li>
+              <li><a href="#">Nos Projets en cours</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="span4">
+          <div class="widget">
+            <!-- logo -->
+            <a class="brand logo" href="index.html">
+							<img  style="height: 30px; width: 30px; border-radius: 50%;" src="assets/images/logo CDC.jpeg" alt="">
+						</a>
+            <!-- end logo -->
+            <address>
+							<strong>Citoyen Dans la Cité, CDC</strong><br>
+							 N°1205/MATDDT-SG-DLPAP-DOCA<br>
+							 Siège social: Toni/Guérin kouka<br>
+               E-mail: cdccontact16@gmail.com <br>
+               BP: 1295 Lomé-TOGO <br>
+							<abbr title="Phone">TEL:</abbr> +228 91 24 45 36/90269526
+						</address>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="verybottom">
+      <div class="container">
+        <div class="row">
+          <div class="span6">
+            <p>
+              &copy; Citoyen Dans la Cité
+            </p>
+          </div>
+          <div class="span6">
+            <div class="credits">
+              <!--
+                All the links in the footer should remain intact.
+                You can delete the links only if you purchased the pro version.
+                Licensing information: https://bootstrapmade.com/license/
+                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Serenity
+              -->
+              <a href="https://bootstrapmade.com/">CDC-TOGO</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript Library Files -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.easing.js"></script>
+  <script src="assets/js/google-code-prettify/prettify.js"></script>
+  <script src="assets/js/modernizr.js"></script>
+  <script src="assets/js/bootstrap.js"></script>
+  <script src="assets/js/jquery.elastislide.js"></script>
+  <script src="assets/js/sequence/sequence.jquery-min.js"></script>
+  <script src="assets/js/sequence/setting.js"></script>
+  <script src="assets/js/jquery.prettyPhoto.js"></script>
+  <script src="assets/js/application.js"></script>
+  <script src="assets/js/jquery.flexslider.js"></script>
+  <script src="assets/js/hover/jquery-hover-effect.js"></script>
+  <script src="assets/js/hover/setting.js"></script>
+
+  <!-- Template Custom JavaScript File -->
+  <script src="assets/js/custom.js"></script>
+
+
+</body>
+
+</html>
